@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-void main() => runApp(App());
-class App extends StatelessWidget {
+import 'main.dart';
+void main() => runApp(History());
+class History extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
@@ -12,9 +13,14 @@ class App extends StatelessWidget {
 backgroundColor: Colors.orangeAccent,
       ),
 floatingActionButton: new FloatingActionButton(
-    onPressed: null,
-child: new Icon(Icons.add_to_home_screen),
   backgroundColor: Colors.orangeAccent,
+child: new Icon(Icons.add_to_home_screen),
+  onPressed: (){
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> MainPage()));
+  },
+
+
+
 ),
       ),
     );

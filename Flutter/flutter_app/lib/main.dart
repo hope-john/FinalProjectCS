@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'Camera_page.dart';
+import 'History.dart';
+
 void main() => runApp(App());
 class App extends StatelessWidget {
   @override
@@ -26,13 +29,17 @@ class MainPage extends StatelessWidget {
               color: Colors.orangeAccent,
               child: Text('Go to Camera'),
               onPressed: () {
+Navigator.push(context, MaterialPageRoute(builder: (context) => TakePictureScreen()));
+
               },
             ),
             RaisedButton(
               textColor: Colors.white,
               color: Colors.orangeAccent,
               child: Text('History Page'),
-              onPressed: (){},
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => History()));
+              },
             )
           ],
         ),
