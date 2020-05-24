@@ -16,7 +16,7 @@ floatingActionButton: new FloatingActionButton(
   backgroundColor: Colors.orangeAccent,
 child: new Icon(Icons.add_to_home_screen),
   onPressed: (){
-    Navigator.push(context, MaterialPageRoute(builder: (context)=> MainPage()));
+    Navigator.pop(context, MaterialPageRoute(builder: (context)=> MainPage()));
   },
 
 
