@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Camera_page.dart';
 import 'History.dart';
+import 'package:image_picker/image_picker.dart';
 
 void main() => runApp(App());
 class App extends StatelessWidget {
@@ -12,6 +13,9 @@ class App extends StatelessWidget {
     );
   }
 }
+
+
+
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -29,7 +33,7 @@ class MainPage extends StatelessWidget {
               color: Colors.orangeAccent,
               child: Text('Go to Camera'),
               onPressed: () {
-Navigator.push(context, MaterialPageRoute(builder: (context) => TakePictureScreen()));
+Navigator.push(context, MaterialPageRoute(builder: (context) => AddInfoShop()));
 
               },
             ),
