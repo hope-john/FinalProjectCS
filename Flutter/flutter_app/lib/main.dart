@@ -33,7 +33,7 @@ class MainPage extends StatelessWidget {
               color: Colors.orangeAccent,
               child: Text('Go to Camera'),
               onPressed: () {
-Navigator.push(context, MaterialPageRoute(builder: (context) => AddInfoShop()));
+Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage()));
 
               },
             ),
