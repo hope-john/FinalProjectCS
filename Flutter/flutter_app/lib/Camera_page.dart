@@ -28,7 +28,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Image Picker Example'),
+        title: Text('Take Picture'),
+        backgroundColor: Colors.orangeAccent,
       ),
       body: Center(
         child: _image == null
@@ -37,6 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: getImage,
+        backgroundColor: Colors.orangeAccent,
         tooltip: 'Pick Image',
         child: Icon(Icons.add_a_photo),
       ),
