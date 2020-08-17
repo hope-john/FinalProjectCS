@@ -59,7 +59,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
 assets:
     - assets/tflite/lmage_Labels.txt
-    - assets/tflite/mobilenet_v2_1.0_224.ckpt.data-00000-of-00001
+    - assets/tflite/mobilenet_v2_1.0_224.tflite
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
