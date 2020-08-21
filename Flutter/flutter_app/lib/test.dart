@@ -184,7 +184,8 @@ class _TfliteHomeState extends State<TfliteHome> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("TFLite Demo"),
+        title: Text("Pick a Picture"),
+        backgroundColor: Colors.orangeAccent,
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.image),
