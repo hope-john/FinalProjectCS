@@ -189,6 +189,7 @@ class _TfliteHomeState extends State<TfliteHome> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.image),
+        backgroundColor: Colors.orangeAccent,
         tooltip: "Pick Image from gallery",
         onPressed: selectFromImagePicker,
       ),
