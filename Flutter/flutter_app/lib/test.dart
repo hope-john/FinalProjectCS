@@ -10,8 +10,7 @@ void main() {
   runApp(MyApp());
 }
 
-const String ssd = "SSD MobileNet";
-const String yolo = "Tiny YOLOv2";
+const String TF = "image_classifier";
 
 class MyApp extends StatelessWidget {
   @override
@@ -29,7 +28,7 @@ class TfliteHome extends StatefulWidget {
 }
 
 class _TfliteHomeState extends State<TfliteHome> {
-  String _model = ssd;
+  String _model = TF;
   File _image;
 
   double _imageWidth;
@@ -54,17 +53,10 @@ class _TfliteHomeState extends State<TfliteHome> {
     Tflite.close();
     try {
       String res;
-      if (_model == yolo) {
-        res = await Tflite.loadModel(
-          model: "assets/food.tflite",
-          labels: "assets/Image_Labels.txt",
-        );
-      } else {
-        res = await Tflite.loadModel(
-          model: "assets/food_quant.tflite",
-          labels: "assets/Image_Labels.txt",
-        );
-      }
+      res = await Tflite.loadModel(
+        model: "assets/food.tflite",
+        labels: "assets/Image_Labels.txt",
+      );
       print(res);
     } on PlatformException {
       print("Failed to load the model");
@@ -83,10 +75,8 @@ class _TfliteHomeState extends State<TfliteHome> {
   predictImage(File image) async {
     if (image == null) return;
 
-    if (_model == yolo) {
-      await yolov2Tiny(image);
-    } else {
-      await ssdMobileNet(image);
+    if (_model == TF) {
+      await TFModel(image);
     }
 
     FileImage(image)
@@ -104,10 +94,11 @@ class _TfliteHomeState extends State<TfliteHome> {
     });
   }
 
-  yolov2Tiny(File image) async {
+  // ignore: non_constant_identifier_names
+  TFModel(File image) async {
     var recognitions = await Tflite.detectObjectOnImage(
         path: image.path,
-        model: "YOLO",
+        model: "image_classifier",
         threshold: 0.3,
         imageMean: 0.0,
         imageStd: 255.0,
@@ -118,14 +109,6 @@ class _TfliteHomeState extends State<TfliteHome> {
     });
   }
 
-  ssdMobileNet(File image) async {
-    var recognitions = await Tflite.detectObjectOnImage(
-        path: image.path, numResultsPerClass: 1);
-
-    setState(() {
-      _recognitions = recognitions;
-    });
-  }
 
   List<Widget> renderBoxes(Size screen) {
     if (_recognitions == null) return [];
