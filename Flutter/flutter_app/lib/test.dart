@@ -56,13 +56,13 @@ class _TfliteHomeState extends State<TfliteHome> {
       String res;
       if (_model == yolo) {
         res = await Tflite.loadModel(
-          model: "assets/tflite/food.tflite",
-          labels: "assets/tflite/Image_Labels.txt",
+          model: "assets/food.tflite",
+          labels: "assets/Image_Labels.txt",
         );
       } else {
         res = await Tflite.loadModel(
-          model: "assets/tflite/food_quant.tflite",
-          labels: "assets/tflite/Image_Labels.txt",
+          model: "assets/food_quant.tflite",
+          labels: "assets/Image_Labels.txt",
         );
       }
       print(res);
