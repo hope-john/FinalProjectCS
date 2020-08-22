@@ -29,7 +29,7 @@ class TfliteHome extends StatefulWidget {
 }
 
 class _TfliteHomeState extends State<TfliteHome> {
-  String _model = yolo;
+  String _model = ssd;
   File _image;
 
   double _imageWidth;
