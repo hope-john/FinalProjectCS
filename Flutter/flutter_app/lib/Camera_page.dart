@@ -44,7 +44,7 @@ class MyImagePickerState extends State {
       var parsedJson = json.decode(response.data.toString());
       setState(() {
         result =
-            "${parsedJson['class']}\n${parsedJson['score'].toStringAsFixed(2)} %\nCal: ${parsedJson['cal']}";
+            "${parsedJson['class']}\n${parsedJson['score'].toStringAsFixed(2)} %\nCalorie ${parsedJson['calories']} Cal.";
       });
     } catch (e) {
       setState(() {
@@ -71,7 +71,24 @@ class MyImagePickerState extends State {
               imageURI == null
                   ? Text('No image selected',
                       style:
-                          TextStyle(color: Colors.orangeAccent, fontSize: 24))
+                          TextStyle(color: Colors.orangeAccent, fontSize: 24,shadows: [
+        Shadow( // bottomLeft
+          offset: Offset(-1.5, -1.5),
+          color: Colors.white
+        ),
+        Shadow( // bottomRight
+          offset: Offset(1, -1.5),
+          color: Colors.white
+        ),
+        Shadow( // topRight
+          offset: Offset(1.5, 1.5),
+          color: Colors.white
+        ),
+        Shadow( // topLeft
+          offset: Offset(-1.5, 1.5),
+          color: Colors.white ),
+      ]
+       ))
                   : Image.file(imageURI,
                       width: 224, height: 224, fit: BoxFit.cover),
               Container(
@@ -104,7 +121,25 @@ class MyImagePickerState extends State {
               result == null
                   ? Text('Result',
                       style:
-                          TextStyle(color: Colors.orangeAccent, fontSize: 18))
+                          TextStyle(color: Colors.orangeAccent, fontSize: 20,fontWeight: FontWeight.bold,inherit: true
+                          ,shadows: [
+        Shadow( // bottomLeft
+          offset: Offset(-1.5, -1.5),
+          color: Colors.white
+        ),
+        Shadow( // bottomRight
+          offset: Offset(1.5, -1.5),
+          color: Colors.white
+        ),
+        Shadow( // topRight
+          offset: Offset(1.5, 1.5),
+          color: Colors.white
+        ),
+        Shadow( // topLeft
+          offset: Offset(-1.5, 1.5),
+          color: Colors.white ),
+      ]
+                          ))
                   : Text(result, style: TextStyle(color: Colors.orangeAccent,fontSize: 18))
             ])));
   }
