@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 import 'dart:io';
 import 'dart:convert';
 import 'package:image_picker/image_picker.dart';
@@ -69,7 +70,7 @@ class MyImagePickerState extends State {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   imageURI == null
-                      ? Text('No image selected.')
+                      ? Text('No image selected',style:TextStyle(color: Colors.orangeAccent,fontSize: 24))
 
                       : Image.file(imageURI, width: 224, height: 224, fit: BoxFit.cover),
                   Container(
@@ -100,8 +101,9 @@ class MyImagePickerState extends State {
                         padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
                       )),
                   result == null
-                      ? Text('Result')
-                      : Text(result)
+                      ? Text('Result',style:TextStyle(color: Colors.orangeAccent,fontSize: 18))
+                      : Text(result,style:TextStyle(color: Colors.orangeAccent))
+                      
                 ]))
     );
   }
