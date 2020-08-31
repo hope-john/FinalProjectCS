@@ -81,7 +81,7 @@ class MyImagePickerState extends State {
           color: Colors.white
         ),
         Shadow( // topRight
-          offset: Offset(1.5, 1.5),
+          offset: Offset(1, 1.5),
           color: Colors.white
         ),
         Shadow( // topLeft
@@ -124,7 +124,7 @@ class MyImagePickerState extends State {
                           TextStyle(color: Colors.orangeAccent, fontSize: 20,fontWeight: FontWeight.bold,inherit: true
                           ,shadows: [
         Shadow( // bottomLeft
-          offset: Offset(-1.5, -1.5),
+          offset: Offset(-1, -1.5),
           color: Colors.white
         ),
         Shadow( // bottomRight
@@ -136,7 +136,7 @@ class MyImagePickerState extends State {
           color: Colors.white
         ),
         Shadow( // topLeft
-          offset: Offset(-1.5, 1.5),
+          offset: Offset(-1, 1.5),
           color: Colors.white ),
       ]
                           ))
