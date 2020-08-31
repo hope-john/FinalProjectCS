@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Camera_page.dart';
 import 'History.dart';
-import 'package:image_picker/image_picker.dart';
+
 
 void main() => runApp(App());
 class App extends StatelessWidget {
@@ -24,16 +24,25 @@ class MainPage extends StatelessWidget {
         title: Text('Main Page'),
         backgroundColor: Colors.orangeAccent,
       ),
-      body: Center(
+      
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/food_bg.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             RaisedButton(
               textColor: Colors.white,
               color: Colors.orangeAccent,
-              child: Text('Go to Camera'),
+              child: Text('Go to pick image'),
               onPressed: () {
-Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage()));
+Navigator.push(context, MaterialPageRoute(builder: (context) =>  MyImagePicker()));
 
               },
             ),

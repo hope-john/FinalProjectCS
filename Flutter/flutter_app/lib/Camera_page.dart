@@ -1,50 +1,109 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:convert';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite/tflite.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart' show join;
-import 'package:path_provider/path_provider.dart';
+import 'package:dio/dio.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
 
 
 
-class MyHomePage extends StatefulWidget {
+class MyImagePicker extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MyImagePickerState createState() => MyImagePickerState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  File _image;
-  final picker = ImagePicker();
-
-  Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.camera);
-
+class MyImagePickerState extends State {
+  File imageURI;
+  String result;
+  String path;
+  Future getImageFromCamera() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.camera);
     setState(() {
-      _image = File(pickedFile.path);
+      imageURI = image;
+      path = image.path;
     });
   }
+
+  Future getImageFromGallery() async {
+    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      imageURI = image;
+      path = image.path;
+    });
+  }
+
+ void classifyImage(BuildContext context) async {
+   FormData formData = new FormData.fromMap({
+      "file": await MultipartFile.fromFile(path)
+   });
+   try {
+      var response = await Dio().post("http://localhost:5000/upload", data: formData); 
+      var parsedJson = json.decode(response.data.toString());
+      setState(() {
+        result = "${parsedJson['class']}\n${parsedJson['score'].toStringAsFixed(2)} %";
+      });
+   } catch (e) {
+     setState(() {
+        result = e.toString();
+      });
+   }
+ }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Take Picture'),
-        backgroundColor: Colors.orangeAccent,
-      ),
-      body: Center(
-        child: _image == null
-            ? Text('No image selected.')
-            : Image.file(_image),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: getImage,
-        backgroundColor: Colors.orangeAccent,
-        tooltip: 'Pick Image',
-        child: Icon(Icons.add_a_photo),
-      ),
+        body: Container(
+          width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+        image: DecorationImage(
+        image: AssetImage('assets/food_bg2.jpg'),
+        fit: BoxFit.cover,
+         ),
+       ),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  imageURI == null
+                      ? Text('No image selected.')
+
+                      : Image.file(imageURI, width: 224, height: 224, fit: BoxFit.cover),
+                  Container(
+                      margin: EdgeInsets.fromLTRB(0, 30, 0, 20),
+                      child: RaisedButton(
+                        onPressed: () => getImageFromCamera(),
+                        child: Text('Select Image From Camera'),
+                        textColor: Colors.white,
+                        color: Colors.orangeAccent,
+                        padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                      )),
+                  Container(
+                      margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      child: RaisedButton(
+                        onPressed: () => getImageFromGallery(),
+                        child: Text('Select Image From Gallery'),
+                        textColor: Colors.white,
+                        color: Colors.orangeAccent,
+                        padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                      )),
+                  Container(
+                      margin: EdgeInsets.fromLTRB(0, 30, 0, 20),
+                      child: RaisedButton(
+                        onPressed: () => classifyImage(context),
+                        child: Text('Classify Image'),
+                        textColor: Colors.white,
+                        color: Colors.orangeAccent,
+                        padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                      )),
+                  result == null
+                      ? Text('Result')
+                      : Text(result)
+                ]))
     );
   }
+
 }
