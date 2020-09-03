@@ -65,82 +65,89 @@ class MyImagePickerState extends State {
                 fit: BoxFit.cover,
               ),
             ),
-            child:
-                Column(mainAxisAlignment: MainAxisAlignment.center, children: <
-                    Widget>[
-              imageURI == null
-                  ? Text('No image selected',
-                      style:
-                          TextStyle(color: Colors.orangeAccent, fontSize: 24,shadows: [
-        Shadow( // bottomLeft
-          offset: Offset(-1.5, -1.5),
-          color: Colors.white
-        ),
-        Shadow( // bottomRight
-          offset: Offset(1, -1.5),
-          color: Colors.white
-        ),
-        Shadow( // topRight
-          offset: Offset(1, 1.5),
-          color: Colors.white
-        ),
-        Shadow( // topLeft
-          offset: Offset(-1.5, 1.5),
-          color: Colors.white ),
-      ]
-       ))
-                  : Image.file(imageURI,
-                      width: 224, height: 224, fit: BoxFit.cover),
-              Container(
-                  margin: EdgeInsets.fromLTRB(0, 30, 0, 20),
-                  child: RaisedButton(
-                    onPressed: () => getImageFromCamera(),
-                    child: Text('Select Image From Camera'),
-                    textColor: Colors.white,
-                    color: Colors.orangeAccent,
-                    padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
-                  )),
-              Container(
-                  margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: RaisedButton(
-                    onPressed: () => getImageFromGallery(),
-                    child: Text('Select Image From Gallery'),
-                    textColor: Colors.white,
-                    color: Colors.orangeAccent,
-                    padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
-                  )),
-              Container(
-                  margin: EdgeInsets.fromLTRB(0, 30, 0, 20),
-                  child: RaisedButton(
-                    onPressed: () => classifyImage(context),
-                    child: Text('Classify Image'),
-                    textColor: Colors.white,
-                    color: Colors.orangeAccent,
-                    padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
-                  )),
-              result == null
-                  ? Text('Result',
-                      style:
-                          TextStyle(color: Colors.orangeAccent, fontSize: 20,fontWeight: FontWeight.bold,inherit: true
-                          ,shadows: [
-        Shadow( // bottomLeft
-          offset: Offset(-1, -1.5),
-          color: Colors.white
-        ),
-        Shadow( // bottomRight
-          offset: Offset(1.5, -1.5),
-          color: Colors.white
-        ),
-        Shadow( // topRight
-          offset: Offset(1.5, 1.5),
-          color: Colors.white
-        ),
-        Shadow( // topLeft
-          offset: Offset(-1, 1.5),
-          color: Colors.white ),
-      ]
-                          ))
-                  : Text(result, style: TextStyle(color: Colors.orangeAccent,fontSize: 18))
-            ])));
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  imageURI == null
+                      ? Text('No image selected',
+                          style: TextStyle(
+                              color: Colors.orangeAccent,
+                              fontSize: 24,
+                              shadows: [
+                                Shadow(
+                                    // bottomLeft
+                                    offset: Offset(-1.5, -1.5),
+                                    color: Colors.white),
+                                Shadow(
+                                    // bottomRight
+                                    offset: Offset(1, -1.5),
+                                    color: Colors.white),
+                                Shadow(
+                                    // topRight
+                                    offset: Offset(1, 1.5),
+                                    color: Colors.white),
+                                Shadow(
+                                    // topLeft
+                                    offset: Offset(-1.5, 1.5),
+                                    color: Colors.white),
+                              ]))
+                      : Image.file(imageURI,
+                          width: 224, height: 224, fit: BoxFit.cover),
+                  Container(
+                      margin: EdgeInsets.fromLTRB(0, 30, 0, 20),
+                      child: RaisedButton(
+                        onPressed: () => getImageFromCamera(),
+                        child: Text('Select Image From Camera'),
+                        textColor: Colors.white,
+                        color: Colors.orangeAccent,
+                        padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                      )),
+                  Container(
+                      margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                      child: RaisedButton(
+                        onPressed: () => getImageFromGallery(),
+                        child: Text('Select Image From Gallery'),
+                        textColor: Colors.white,
+                        color: Colors.orangeAccent,
+                        padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                      )),
+                  Container(
+                      margin: EdgeInsets.fromLTRB(0, 30, 0, 20),
+                      child: RaisedButton(
+                        onPressed: () => classifyImage(context),
+                        child: Text('Classify !!'),
+                        textColor: Colors.white,
+                        color: Colors.orangeAccent,
+                        padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                      )),
+                  result == null
+                      ? Text('Result',
+                          style: TextStyle(
+                              color: Colors.orangeAccent,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              inherit: true,
+                              shadows: [
+                                Shadow(
+                                    // bottomLeft
+                                    offset: Offset(-1, -1.5),
+                                    color: Colors.white),
+                                Shadow(
+                                    // bottomRight
+                                    offset: Offset(1.5, -1.5),
+                                    color: Colors.white),
+                                Shadow(
+                                    // topRight
+                                    offset: Offset(1.5, 1.5),
+                                    color: Colors.white),
+                                Shadow(
+                                    // topLeft
+                                    offset: Offset(-1, 1.5),
+                                    color: Colors.white),
+                              ]))
+                      : Text(result,
+                          style: TextStyle(
+                              color: Colors.orangeAccent, fontSize: 18))
+                ])));
   }
 }
