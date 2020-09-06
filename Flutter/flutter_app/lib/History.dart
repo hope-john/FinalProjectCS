@@ -1,27 +1,36 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
-void main() => runApp(History());
-class History extends StatelessWidget {
-  
+
+
+class History {
+  String data;
+  DateTime dateTime;
+
+  History({this.data, this.dateTime});
+}
+class HistoryPage extends StatefulWidget {
+  @override
+  HistoryPageState createState() => HistoryPageState();
+}
+
+class HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'History',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("History Page"),
-backgroundColor: Colors.orangeAccent,
-      ),
-floatingActionButton: new FloatingActionButton(
-  backgroundColor: Colors.orangeAccent,
-child: new Icon(Icons.add_to_home_screen),
-  onPressed: (){
-    Navigator.pop(context, MaterialPageRoute(builder: (context)=> MainPage()));
-  },
-
-
-
-),
+    return Scaffold(
+      appBar: AppBar(
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pop(context);
+              })),
+      body: ListView.builder(
+        itemCount: historyList.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+            title: Text(
+                ' ${historyList[index].data}   ${historyList[index].dateTime.toString()}'),
+          );
+        },
       ),
     );
   }

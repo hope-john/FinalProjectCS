@@ -51,7 +51,7 @@ Navigator.push(context, MaterialPageRoute(builder: (context) =>  MyImagePicker()
               color: Colors.orangeAccent,
               child: Text('History Page'),
               onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => History()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => HistoryPage()));
               },
             )
           ],

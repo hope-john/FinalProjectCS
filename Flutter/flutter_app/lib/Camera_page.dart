@@ -44,7 +44,7 @@ class MyImagePickerState extends State {
       var parsedJson = json.decode(response.data.toString());
       setState(() {
         result =
-            "${parsedJson['class']}\n${parsedJson['score'].toStringAsFixed(2)} %\nCalorie ${parsedJson['calories']} Cal.";
+            "${parsedJson['class']}\n${parsedJson['score'].toStringAsFixed(2)} %\nCalorie ${parsedJson['calories']} Cal.\n Ref:${'Reference1'}\n Ref:${'Reference2'}";
       });
     } catch (e) {
       setState(() {
