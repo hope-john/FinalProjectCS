@@ -1,0 +1,22 @@
+[
+    {
+        "empname":"Suresh KC",
+        "department":"Software",
+        "timestamp": "2020-09-08T16:20:00.000+7"
+    },
+    {
+        "empname":"Rajesh Shrestha",
+        "department":"Hardware",
+        "timestamp": "2020-09-08T16:20:00.000+7"
+    },
+    {
+        "empname":"Mohan Thapa",
+        "department":"Network",
+        "timestamp": "2020-09-08T16:20:00.000+7"
+    },
+    {
+        "empname":"Anusha Khadka",
+        "department":"Software",
+        "timestamp": "2020-09-08T16:20:00.000+7"
+    }
+]
