@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'dart:io';
 import 'dart:convert';
 import 'package:image_picker/image_picker.dart';
+import 'package:localstorage/localstorage.dart';
 import 'package:tflite/tflite.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class MyImagePicker extends StatefulWidget {
 }
 
 class MyImagePickerState extends State {
+  final LocalStorage storage = new LocalStorage('food_history');
   File imageURI;
   String result;
   String path;
@@ -36,16 +38,30 @@ class MyImagePickerState extends State {
   }
 
   void classifyImage(BuildContext context) async {
+    List showData = storage.getItem('foods');
+    if (showData == null) {
+      showData = [];
+      storage.setItem('foods', showData);
+    }
     FormData formData =
         new FormData.fromMap({"file": await MultipartFile.fromFile(path)});
     try {
       var response =
-          await Dio().post("http://localhost:5000/upload", data: formData);
-      var parsedJson = json.decode(response.data.toString());
+          await Dio().post("http://10.5.46.222/upload", data: formData);
+      dynamic parsedJson = json.decode(response.data.toString());
       setState(() {
         result =
-            "${parsedJson['class']}\n${parsedJson['score'].toStringAsFixed(2)} %\nCalorie ${parsedJson['calories']} Cal.\n Ref:${'Reference1'}\n Ref:${'Reference2'}";
+            "${parsedJson['class']}\n${parsedJson['score'].toStringAsFixed(2)} %\nCalorie ${parsedJson['calories']} Cal.\n Ref1:${parsedJson['Reference1']}\n Ref2:${parsedJson['Reference2']}";
       });
+      var iso8601string = new DateTime.now().toIso8601String();
+      var newData = {
+        "empname": "",
+        "department": "",
+        "NameFood": parsedJson['class'],
+        "timestamp": iso8601string
+      };
+      showData.add(newData);
+      storage.setItem('foods', showData);
     } catch (e) {
       setState(() {
         result = e.toString();
@@ -97,7 +113,7 @@ class MyImagePickerState extends State {
                       margin: EdgeInsets.fromLTRB(0, 30, 0, 20),
                       child: RaisedButton(
                         onPressed: () => getImageFromCamera(),
-                        child: Text('Select Image From Camera'),
+                        child: Text('Take a Picture From Camera'),
                         textColor: Colors.white,
                         color: Colors.orangeAccent,
                         padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
