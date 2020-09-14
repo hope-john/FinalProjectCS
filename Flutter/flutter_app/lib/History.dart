@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
+import 'package:intl/intl.dart';
 import 'main.dart';
 import 'dart:io';
 import 'dart:convert';
@@ -12,32 +14,36 @@ class HistoryPage extends StatefulWidget {
 }
 
 class HistoryPageState extends State<HistoryPage> {
+  final LocalStorage storage = new LocalStorage('food_history');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("History"),
+        title: Text("History Page"),
         backgroundColor: Colors.orangeAccent,
       ),
       body: Center(
         child: FutureBuilder(
-          builder: (context, snapshot) {
-            var showData = json.decode(snapshot.data.toString());
+          builder: (BuildContext context, snapshot) {
+            List showData = storage.getItem('foods');
+            if (showData == null) {
+              showData = [];
+              storage.setItem('foods', showData);
+            }
+            
             return ListView.builder(
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  onTap: () {},
-                  
-                  title: Text(showData[index]['timestamp']),
-                  subtitle: Text(showData[index]['department']),
-                  trailing: const Icon(Icons.chevron_right),
-                  
-                );
-              },
-              itemCount: showData.length,
-            );
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                      onTap: () {},
+                      title: Text(showData[index]['NameFood']),
+                      subtitle: Text(
+                        new DateFormat.yMMMd().format(
+                            DateTime.parse(showData[index]['timestamp'])),
+                      ),
+                      trailing: const Icon(Icons.chevron_right));
+                },
+                itemCount: showData.length);
           },
-          future: DefaultAssetBundle.of(context).loadString("assets/food.json"),
         ),
       ),
     );

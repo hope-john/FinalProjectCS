@@ -2,21 +2,25 @@
     {
         "empname":"Suresh KC",
         "department":"Software",
+        "NameFood":"Steak",
         "timestamp": "2020-09-08T16:20:00.000+7"
     },
     {
         "empname":"Rajesh Shrestha",
         "department":"Hardware",
+        "NameFood":"ข้าวขาหมู",
         "timestamp": "2020-09-08T16:20:00.000+7"
     },
     {
         "empname":"Mohan Thapa",
         "department":"Network",
+        "NameFood":"ข้าวขาหมู",
         "timestamp": "2020-09-08T16:20:00.000+7"
     },
     {
         "empname":"Anusha Khadka",
         "department":"Software",
+        "NameFood":"Steak",
         "timestamp": "2020-09-08T16:20:00.000+7"
     }
 ]
