@@ -47,7 +47,7 @@ class MyImagePickerState extends State {
         new FormData.fromMap({"file": await MultipartFile.fromFile(path)});
     try {
       var response =
-          await Dio().post("http://10.5.46.222/upload", data: formData);
+          await Dio().post("http://192.168.1.132/upload", data: formData);
       dynamic parsedJson = json.decode(response.data.toString());
       setState(() {
         result =
@@ -131,7 +131,7 @@ class MyImagePickerState extends State {
                       margin: EdgeInsets.fromLTRB(0, 30, 0, 20),
                       child: RaisedButton(
                         onPressed: () => classifyImage(context),
-                        child: Text('Classify !!'),
+                        child: Text('SCAN !!'),
                         textColor: Colors.white,
                         color: Colors.orangeAccent,
                         padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
