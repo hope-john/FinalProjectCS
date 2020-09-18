@@ -46,11 +46,11 @@ class MyImagePickerState extends State {
         new FormData.fromMap({"file": await MultipartFile.fromFile(path)});
     try {
       var response =
-          await Dio().post("http://10.17.249.98:5000/upload", data: formData);
+          await Dio().post("http://192.168.1.60:5000/upload", data: formData);
       dynamic parsedJson = json.decode(response.data.toString());
       setState(() {
         result =
-            "${parsedJson['class']}\n Confidence ${parsedJson['score'].toStringAsFixed(2)} %\nCalorie ${parsedJson['calories']} Cal.\n Ref1:${parsedJson['Reference1']}\n Ref2:${parsedJson['Reference2']}";
+            "${parsedJson['class']}\n Confidence : ${parsedJson['score'].toStringAsFixed(2)} %\nCalorie ${parsedJson['calories']} Cal.\n Ref1:${parsedJson['Reference1']}\n Ref2:${parsedJson['Reference2']}";
       });
       var iso8601string = new DateTime.now().toIso8601String();
       var newData = {
