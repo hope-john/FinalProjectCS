@@ -5,7 +5,6 @@ import 'dart:convert';
 import 'package:image_picker/image_picker.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:tflite/tflite.dart';
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -47,7 +46,7 @@ class MyImagePickerState extends State {
         new FormData.fromMap({"file": await MultipartFile.fromFile(path)});
     try {
       var response =
-          await Dio().post("http://192.168.1.132/upload", data: formData);
+          await Dio().post("http://10.17.249.98:5000/upload", data: formData);
       dynamic parsedJson = json.decode(response.data.toString());
       setState(() {
         result =
@@ -77,7 +76,7 @@ class MyImagePickerState extends State {
             height: double.infinity,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/food_bg2.jpg'),
+                image: AssetImage('assets/food_bg3.jpg'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -87,26 +86,9 @@ class MyImagePickerState extends State {
                   imageURI == null
                       ? Text('No image selected',
                           style: TextStyle(
-                              color: Colors.orangeAccent,
-                              fontSize: 24,
-                              shadows: [
-                                Shadow(
-                                    // bottomLeft
-                                    offset: Offset(-1.5, -1.5),
-                                    color: Colors.white),
-                                Shadow(
-                                    // bottomRight
-                                    offset: Offset(1, -1.5),
-                                    color: Colors.white),
-                                Shadow(
-                                    // topRight
-                                    offset: Offset(1, 1.5),
-                                    color: Colors.white),
-                                Shadow(
-                                    // topLeft
-                                    offset: Offset(-1.5, 1.5),
-                                    color: Colors.white),
-                              ]))
+                            color: Colors.orangeAccent,
+                            fontSize: 24,
+                          ))
                       : Image.file(imageURI,
                           width: 224, height: 224, fit: BoxFit.cover),
                   Container(
@@ -139,31 +121,37 @@ class MyImagePickerState extends State {
                   result == null
                       ? Text('Result',
                           style: TextStyle(
+                            color: Colors.orangeAccent,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            inherit: true,
+                          ))
+                      : Container(
+                          // color: Colors.white,
+                          //                 decoration: BoxDecoration(
+                          // borderRadius: BorderRadius.circular(10),
+                          // color: Colors.white,
+                          // border: Border(
+                          //     left: BorderSide(
+                          //         color: Colors.green,
+                          //         width: 3,
+                          //     ),
+                          //   ),
+                          // ),
+                          height: 150,
+                          width: 300,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(result,
+                                style: GoogleFonts.londrinaSolid(
+                                    color: Colors.white,
+                                    fontSize: 20)),
+                          ),
+                          decoration: BoxDecoration(
                               color: Colors.orangeAccent,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              inherit: true,
-                              shadows: [
-                                Shadow(
-                                    // bottomLeft
-                                    offset: Offset(-1, -1.5),
-                                    color: Colors.white),
-                                Shadow(
-                                    // bottomRight
-                                    offset: Offset(1.5, -1.5),
-                                    color: Colors.white),
-                                Shadow(
-                                    // topRight
-                                    offset: Offset(1.5, 1.5),
-                                    color: Colors.white),
-                                Shadow(
-                                    // topLeft
-                                    offset: Offset(-1, 1.5),
-                                    color: Colors.white),
-                              ]))
-                      : Text(result,
-                          style: TextStyle(
-                              color: Colors.orangeAccent, fontSize: 18))
+                              borderRadius: BorderRadius.circular(10),
+                              ),
+                        )
                 ])));
   }
 }

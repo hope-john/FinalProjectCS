@@ -63,6 +63,7 @@ flutter:
     - food.json
     - assets/food_bg.jpg
     - assets/food_bg2.jpg
+    - assets/food_bg3.jpg
   
 
   # An image asset can refer to one or more resolution-specific "variants", see
