@@ -21,7 +21,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Main Page'),
+        title: Text('FOOD TRACKER'),
         backgroundColor: Colors.orangeAccent,
       ),
       
@@ -42,7 +42,7 @@ class MainPage extends StatelessWidget {
               color: Colors.orangeAccent,
               child: Text('Go to pick image'),
               onPressed: () {
-Navigator.push(context, MaterialPageRoute(builder: (context) =>  MyImagePicker()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) =>  MyImagePicker()));
 
               },
             ),

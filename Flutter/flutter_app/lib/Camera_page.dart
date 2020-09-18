@@ -50,7 +50,7 @@ class MyImagePickerState extends State {
       dynamic parsedJson = json.decode(response.data.toString());
       setState(() {
         result =
-            "${parsedJson['class']}\n${parsedJson['score'].toStringAsFixed(2)} %\nCalorie ${parsedJson['calories']} Cal.\n Ref1:${parsedJson['Reference1']}\n Ref2:${parsedJson['Reference2']}";
+            "${parsedJson['class']}\n Confidence ${parsedJson['score'].toStringAsFixed(2)} %\nCalorie ${parsedJson['calories']} Cal.\n Ref1:${parsedJson['Reference1']}\n Ref2:${parsedJson['Reference2']}";
       });
       var iso8601string = new DateTime.now().toIso8601String();
       var newData = {
@@ -85,46 +85,54 @@ class MyImagePickerState extends State {
                 children: <Widget>[
                   imageURI == null
                       ? Text('No image selected',
-                          style: TextStyle(
+                          style: GoogleFonts.lato(
                             color: Colors.orangeAccent,
-                            fontSize: 24,
+                            fontSize: 32,
                           ))
                       : Image.file(imageURI,
                           width: 224, height: 224, fit: BoxFit.cover),
                   Container(
                       margin: EdgeInsets.fromLTRB(0, 30, 0, 20),
-                      child: RaisedButton(
-                        onPressed: () => getImageFromCamera(),
-                        child: Text('Take a Picture From Camera'),
-                        textColor: Colors.white,
+                      child: RaisedButton.icon(
                         color: Colors.orangeAccent,
+                        icon: Icon(Icons.add_a_photo),
+                        onPressed: () => getImageFromCamera(),
+                        label: Text('Take a Picture From Camera'),
+                        textColor: Colors.white,
+                        
                         padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                      
                       )),
                   Container(
                       margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      child: RaisedButton(
-                        onPressed: () => getImageFromGallery(),
-                        child: Text('Select Image From Gallery'),
-                        textColor: Colors.white,
+                      child: RaisedButton.icon(
                         color: Colors.orangeAccent,
+                        icon: Icon(Icons.add_photo_alternate ),
+                        onPressed: () => getImageFromGallery(),
+                        label: Text('Select Image From Gallery'),
+                        textColor: Colors.white,
+                        
                         padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
                       )),
                   Container(
                       margin: EdgeInsets.fromLTRB(0, 30, 0, 20),
-                      child: RaisedButton(
+                      child: RaisedButton.icon(
                         onPressed: () => classifyImage(context),
-                        child: Text('SCAN !!'),
+                        icon: Icon(Icons.find_in_page ),
+                        label: Text('SCAN'),
                         textColor: Colors.white,
                         color: Colors.orangeAccent,
                         padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
                       )),
                   result == null
                       ? Text('Result',
-                          style: TextStyle(
+                          style: GoogleFonts.lato(
                             color: Colors.orangeAccent,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            inherit: true,
+                            fontSize: 29,
+
+                            
+                            
+                            
                           ))
                       : Container(
                           // color: Colors.white,
@@ -138,14 +146,14 @@ class MyImagePickerState extends State {
                           //     ),
                           //   ),
                           // ),
-                          height: 150,
-                          width: 300,
+                          height: 140,
+                          width: 325,
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Text(result,
-                                style: GoogleFonts.londrinaSolid(
+                                style: GoogleFonts.lato(
                                     color: Colors.white,
-                                    fontSize: 20)),
+                                    fontSize: 18)),
                           ),
                           decoration: BoxDecoration(
                               color: Colors.orangeAccent,
