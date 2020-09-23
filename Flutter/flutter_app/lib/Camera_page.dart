@@ -17,6 +17,7 @@ class MyImagePicker extends StatefulWidget {
 
 class MyImagePickerState extends State {
   final LocalStorage storage = new LocalStorage('food_history');
+  double score = 0;
   File imageURI;
   String result;
   String path;
@@ -46,11 +47,12 @@ class MyImagePickerState extends State {
         new FormData.fromMap({"file": await MultipartFile.fromFile(path)});
     try {
       var response =
-          await Dio().post("http://192.168.1.60:5000/upload", data: formData);
+          await Dio().post("http://10.17.249.209:5000/upload", data: formData);
       dynamic parsedJson = json.decode(response.data.toString());
       setState(() {
         result =
             "${parsedJson['class']}\n Confidence : ${parsedJson['score'].toStringAsFixed(2)} %\nCalorie ${parsedJson['calories']} Cal.\n Ref1:${parsedJson['Reference1']}\n Ref2:${parsedJson['Reference2']}";
+        score = parsedJson['score'];
       });
       var iso8601string = new DateTime.now().toIso8601String();
       var newData = {
@@ -127,7 +129,7 @@ class MyImagePickerState extends State {
                   result == null
                       ? Text('Result',
                           style: GoogleFonts.lato(
-                            color: Colors.orangeAccent,
+                            color:Colors.orangeAccent,
                             fontSize: 29,
 
                             
@@ -135,17 +137,7 @@ class MyImagePickerState extends State {
                             
                           ))
                       : Container(
-                          // color: Colors.white,
-                          //                 decoration: BoxDecoration(
-                          // borderRadius: BorderRadius.circular(10),
-                          // color: Colors.white,
-                          // border: Border(
-                          //     left: BorderSide(
-                          //         color: Colors.green,
-                          //         width: 3,
-                          //     ),
-                          //   ),
-                          // ),
+                          
                           height: 140,
                           width: 325,
                           child: Padding(
@@ -156,7 +148,7 @@ class MyImagePickerState extends State {
                                     fontSize: 18)),
                           ),
                           decoration: BoxDecoration(
-                              color: Colors.orangeAccent,
+                              color: score > 66 ? Colors.green: score > 35 ? Colors.orangeAccent: Colors.redAccent,
                               borderRadius: BorderRadius.circular(10),
                               ),
                         )
