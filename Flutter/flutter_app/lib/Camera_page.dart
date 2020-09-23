@@ -148,7 +148,7 @@ class MyImagePickerState extends State {
                                     fontSize: 18)),
                           ),
                           decoration: BoxDecoration(
-                              color: score > 66 ? Colors.green: score > 35 ? Colors.orangeAccent: Colors.redAccent,
+                              color: score > 66 ? Colors.lightGreen[700]: score > 35 ? Colors.yellowAccent[700]: Colors.red[600],
                               borderRadius: BorderRadius.circular(10),
                               ),
                         )
