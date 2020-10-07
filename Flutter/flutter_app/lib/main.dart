@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'Camera_page.dart';
 import 'History.dart';
-
+import 'About.dart';
 
 void main() => runApp(App());
+
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -14,8 +15,6 @@ class App extends StatelessWidget {
   }
 }
 
-
-
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -24,13 +23,12 @@ class MainPage extends StatelessWidget {
         title: Text('FOOD TRACKER'),
         backgroundColor: Colors.orangeAccent,
       ),
-      
       body: Container(
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/food_bg.jpg'),
+            image: AssetImage('assets/yellow_bg.jpg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -42,16 +40,26 @@ class MainPage extends StatelessWidget {
               color: Colors.orangeAccent,
               child: Text('Go to pick image'),
               onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) =>  MyImagePicker()));
-
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MyImagePicker()));
               },
             ),
             RaisedButton(
               textColor: Colors.white,
               color: Colors.orangeAccent,
               child: Text('History Page'),
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => HistoryPage()));
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HistoryPage()));
+              },
+            ),
+            RaisedButton(
+              textColor: Colors.white,
+              color: Colors.orangeAccent,
+              child: Text('About Food Tracker'),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AboutPage()));
               },
             )
           ],

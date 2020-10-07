@@ -47,11 +47,11 @@ class MyImagePickerState extends State {
         new FormData.fromMap({"file": await MultipartFile.fromFile(path)});
     try {
       var response =
-          await Dio().post("http://10.17.249.209:5000/upload", data: formData);
+          await Dio().post("http://192.168.1.172:5000/upload", data: formData);
       dynamic parsedJson = json.decode(response.data.toString());
       setState(() {
         result =
-            "${parsedJson['class']}\n Confidence : ${parsedJson['score'].toStringAsFixed(2)} %\nCalorie ${parsedJson['calories']} Cal.\n Ref1:${parsedJson['Reference1']}\n Ref2:${parsedJson['Reference2']}";
+            "${parsedJson['class']}\nConfidence : ${parsedJson['score'].toStringAsFixed(2)} %\nCalorie ${parsedJson['calories']} Cal Per-serving";
         score = parsedJson['score'];
       });
       var iso8601string = new DateTime.now().toIso8601String();
@@ -78,7 +78,7 @@ class MyImagePickerState extends State {
             height: double.infinity,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/food_bg3.jpg'),
+                image: AssetImage('assets/yellow_bg.jpg'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -92,7 +92,7 @@ class MyImagePickerState extends State {
                             fontSize: 32,
                           ))
                       : Image.file(imageURI,
-                          width: 224, height: 224, fit: BoxFit.cover),
+                          width: 299, height: 299, fit: BoxFit.cover),
                   Container(
                       margin: EdgeInsets.fromLTRB(0, 30, 0, 20),
                       child: RaisedButton.icon(
@@ -131,6 +131,7 @@ class MyImagePickerState extends State {
                           style: GoogleFonts.lato(
                             color:Colors.orangeAccent,
                             fontSize: 29,
+                            
 
                             
                             
@@ -138,14 +139,15 @@ class MyImagePickerState extends State {
                           ))
                       : Container(
                           
-                          height: 140,
+                          height: 130,
                           width: 325,
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Text(result,
-                                style: GoogleFonts.lato(
-                                    color: Colors.white,
-                                    fontSize: 18)),
+                                style: 
+                                GoogleFonts.lato(
+                                    color: score > 66 ? Colors.white: score > 35 ? Colors.black: Colors.white,
+                                    fontSize: 22,fontWeight: FontWeight.bold)), 
                           ),
                           decoration: BoxDecoration(
                               color: score > 66 ? Colors.lightGreen[700]: score > 35 ? Colors.yellowAccent[700]: Colors.red[600],
