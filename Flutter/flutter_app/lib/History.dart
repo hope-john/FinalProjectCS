@@ -30,13 +30,18 @@ class HistoryPageState extends State<HistoryPage> {
               showData = [];
               storage.setItem('foods', showData);
             }
-            
+
             return ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
                   return ListTile(
-                      onTap: () {},
-                      title: Text(showData[index]['NameFood']),
-                      subtitle: Text(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HistorySecondPage()));
+                      },
+                      subtitle: Text(showData[index]['NameFood']),
+                      title: Text(
                         new DateFormat.yMMMd().format(
                             DateTime.parse(showData[index]['timestamp'])),
                       ),
@@ -47,5 +52,27 @@ class HistoryPageState extends State<HistoryPage> {
         ),
       ),
     );
+  }
+}
+
+class HistorySecondPage extends StatefulWidget {
+  @override
+  HistoryPageState createState() => HistoryPageState();
+}
+
+class HistorySecondPageState extends State<HistorySecondPage> {
+  final LocalStorage storage = new LocalStorage('food_history');
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Container(
+            width: double.infinity,
+            height: double.infinity,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/yellow_bg.jpg'),
+                fit: BoxFit.cover,
+              ),
+            )));
   }
 }
