@@ -152,19 +152,19 @@ class MyImagePickerState extends State {
                       ),
                 score > 66
                     ? Icon(
-                        Icons.check,
+                        Icons.check_circle_outline,
                         color: Colors.lightGreen[700],
                         size: 42,
                       )
                       :score > 35
                       ? Icon(
-                        Icons.check,
+                        Icons.check_circle_outline,
                         color: Colors.yellow[700],
                         size: 42,
                       )
                       :score < 35
                       ? Icon(
-                        Icons.check,
+                        Icons.block,
                         color: Colors.red,
                         size: 42,
                       )
