@@ -72,7 +72,7 @@ class MyImagePickerState extends State {
 
   @override
   Widget build(BuildContext context) {
-    final mediaWidth = mediaWidth;
+    final mediaWidth = MediaQuery.of(context).size.width;
     return Scaffold(
         body: Container(
       child: Container(
@@ -90,7 +90,7 @@ class MyImagePickerState extends State {
                     : Image.file(imageURI,
                         width: 224, height: 224, fit: BoxFit.cover),
                 SizedBox(
-                  height: 30,
+                  height: 15,
                 ),
                 Container(
                     width: mediaWidth * 0.7,
@@ -103,7 +103,7 @@ class MyImagePickerState extends State {
                       padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
                     )),
                 SizedBox(
-                  height: 30,
+                  height: 15,
                 ),
                 Container(
                     width: mediaWidth * 0.7,
@@ -115,15 +115,17 @@ class MyImagePickerState extends State {
                       textColor: Colors.white,
                       padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
                     )),
+                    
                 Container(
                     width: mediaWidth * 0.7,
-                    margin: EdgeInsets.only(top: 30, bottom: 20),
+                    margin: EdgeInsets.only(top: 15, bottom: 20),
                     child: RaisedButton.icon(
                       onPressed: () => classifyImage(context),
                       icon: Icon(Icons.find_in_page),
                       label: Text('SCAN'),
                       textColor: Colors.white,
                       color: Colors.orangeAccent,
+                      
                       padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
                     )),
                 result == null

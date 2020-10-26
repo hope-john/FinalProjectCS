@@ -18,6 +18,7 @@ class App extends StatelessWidget {
 class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final mediaWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: Text('FOOD TRACKER'),
@@ -32,7 +33,9 @@ class MainPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            RaisedButton(
+          Container(
+            width: mediaWidth * 0.7,
+            child: RaisedButton(
               textColor: Colors.white,
               color: Colors.orangeAccent,
               child: Text('Go to pick image'),
@@ -41,7 +44,13 @@ class MainPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => MyImagePicker()));
               },
             ),
-            RaisedButton(
+          ),
+          SizedBox(
+                  height: 15,
+                ),
+          Container(
+            width: mediaWidth * 0.7,
+            child:RaisedButton(
               textColor: Colors.white,
               color: Colors.orangeAccent,
               child: Text('History Page'),
@@ -50,7 +59,13 @@ class MainPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => HistoryPage()));
               },
             ),
-            RaisedButton(
+          ),
+          SizedBox(
+                  height: 15,
+                ),
+          Container(
+            width: mediaWidth * 0.7,
+            child:RaisedButton(
               textColor: Colors.white,
               color: Colors.orangeAccent,
               child: Text('About Food Tracker'),
@@ -59,6 +74,7 @@ class MainPage extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => AboutPage()));
               },
             )
+           )
           ],
         ),
       ),
