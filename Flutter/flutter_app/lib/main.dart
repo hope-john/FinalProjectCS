@@ -27,10 +27,7 @@ class MainPage extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/yellow_bg.jpg'),
-            fit: BoxFit.cover,
-          ),
+          color: const Color(0x000000)
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

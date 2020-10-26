@@ -73,14 +73,11 @@ class MyImagePickerState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
+        body: Container(
       child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/yellow_bg.jpg'),
-              fit: BoxFit.cover,
-            ),
+            color: const Color(0x000000)
           ),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -92,9 +89,9 @@ class MyImagePickerState extends State {
                           fontSize: 32,
                         ))
                     : Image.file(imageURI,
-                        width: 299, height: 299, fit: BoxFit.cover),
+                        width: 224, height: 224, fit: BoxFit.cover),
                 Container(
-                    margin: EdgeInsets.fromLTRB(0, 30, 0, 20),
+                    padding: new EdgeInsets.all(25.0),
                     child: RaisedButton.icon(
                       color: Colors.orangeAccent,
                       icon: Icon(Icons.add_a_photo),
@@ -102,6 +99,7 @@ class MyImagePickerState extends State {
                       label: Text('Take a Picture From Camera'),
                       textColor: Colors.white,
                       padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                      
                     )),
                 Container(
                     margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -136,13 +134,11 @@ class MyImagePickerState extends State {
                           padding: const EdgeInsets.all(10.0),
                           child: Text(result,
                               style: GoogleFonts.lato(
-                                  color: score > 66
-                                      ? Colors.white
-                                      : score > 35
-                                          ? Colors.black
-                                          : Colors.white,
+                                  color: 
+                                        Colors.white,
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold)),
+                                  
                         ),
                         decoration: BoxDecoration(
                           color:Colors.orangeAccent,
@@ -150,23 +146,24 @@ class MyImagePickerState extends State {
                           
                         ),
                       ),
+                      
                 score > 66
                     ? Icon(
                         Icons.check_circle_outline,
                         color: Colors.lightGreen[700],
-                        size: 42,
+                        size: 50,
                       )
                       :score > 35
                       ? Icon(
                         Icons.check_circle_outline,
                         color: Colors.yellow[700],
-                        size: 42,
+                        size: 50,
                       )
-                      :score < 35
+                      : score > 1
                       ? Icon(
-                        Icons.block,
+                        Icons.report,
                         color: Colors.red,
-                        size: 42,
+                        size: 50,
                       )
                     : Material(),
                     
