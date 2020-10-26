@@ -72,13 +72,12 @@ class MyImagePickerState extends State {
 
   @override
   Widget build(BuildContext context) {
+    final mediaWidth = mediaWidth;
     return Scaffold(
         body: Container(
       child: Container(
           width: double.infinity,
-          decoration: BoxDecoration(
-            color: const Color(0x000000)
-          ),
+          decoration: BoxDecoration(color: const Color(0x000000)),
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -90,8 +89,11 @@ class MyImagePickerState extends State {
                         ))
                     : Image.file(imageURI,
                         width: 224, height: 224, fit: BoxFit.cover),
+                SizedBox(
+                  height: 30,
+                ),
                 Container(
-                    padding: new EdgeInsets.all(25.0),
+                    width: mediaWidth * 0.7,
                     child: RaisedButton.icon(
                       color: Colors.orangeAccent,
                       icon: Icon(Icons.add_a_photo),
@@ -99,10 +101,12 @@ class MyImagePickerState extends State {
                       label: Text('Take a Picture From Camera'),
                       textColor: Colors.white,
                       padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
-                      
                     )),
+                SizedBox(
+                  height: 30,
+                ),
                 Container(
-                    margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                    width: mediaWidth * 0.7,
                     child: RaisedButton.icon(
                       color: Colors.orangeAccent,
                       icon: Icon(Icons.add_photo_alternate),
@@ -112,7 +116,8 @@ class MyImagePickerState extends State {
                       padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
                     )),
                 Container(
-                    margin: EdgeInsets.fromLTRB(0, 30, 0, 20),
+                    width: mediaWidth * 0.7,
+                    margin: EdgeInsets.only(top: 30, bottom: 20),
                     child: RaisedButton.icon(
                       onPressed: () => classifyImage(context),
                       icon: Icon(Icons.find_in_page),
@@ -134,39 +139,34 @@ class MyImagePickerState extends State {
                           padding: const EdgeInsets.all(10.0),
                           child: Text(result,
                               style: GoogleFonts.lato(
-                                  color: 
-                                        Colors.white,
+                                  color: Colors.white,
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold)),
-                                  
                         ),
                         decoration: BoxDecoration(
-                          color:Colors.orangeAccent,
+                          color: Colors.orangeAccent,
                           borderRadius: BorderRadius.circular(10),
-                          
                         ),
                       ),
-                      
                 score > 66
                     ? Icon(
                         Icons.check_circle_outline,
                         color: Colors.lightGreen[700],
                         size: 50,
                       )
-                      :score > 35
-                      ? Icon(
-                        Icons.check_circle_outline,
-                        color: Colors.yellow[700],
-                        size: 50,
-                      )
-                      : score > 1
-                      ? Icon(
-                        Icons.report,
-                        color: Colors.red,
-                        size: 50,
-                      )
-                    : Material(),
-                    
+                    : score > 35
+                        ? Icon(
+                            Icons.check_circle_outline,
+                            color: Colors.yellow[700],
+                            size: 50,
+                          )
+                        : score > 1
+                            ? Icon(
+                                Icons.report,
+                                color: Colors.red,
+                                size: 50,
+                              )
+                            : Material(),
               ])),
     ));
   }
