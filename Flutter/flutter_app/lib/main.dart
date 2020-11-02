@@ -23,6 +23,7 @@ class MainPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('FOOD TRACKER'),
         backgroundColor: Colors.orangeAccent,
+        
       ),
       body: Container(
         width: double.infinity,
@@ -30,14 +31,36 @@ class MainPage extends StatelessWidget {
         decoration: BoxDecoration(
           color: const Color(0x000000)
         ),
+        
+      
+
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+
+          Container(
+          height: 210,
+          width: mediaWidth*0.7,
+          decoration: new BoxDecoration(
+  image: new DecorationImage(
+      image: ExactAssetImage('assets/Icon_Trans.png'),
+      fit: BoxFit.cover,
+      ), 
+        ),
+),
+
+
+
           Container(
             width: mediaWidth * 0.7,
             child: RaisedButton(
+              shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                          elevation: 5,
               textColor: Colors.white,
+              padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
               color: Colors.orangeAccent,
+              
               child: Text('Go to pick image'),
               onPressed: () {
                 Navigator.push(context,
@@ -51,7 +74,11 @@ class MainPage extends StatelessWidget {
           Container(
             width: mediaWidth * 0.7,
             child:RaisedButton(
+              shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                          elevation: 5,
               textColor: Colors.white,
+              padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
               color: Colors.orangeAccent,
               child: Text('History Page'),
               onPressed: () {
@@ -66,7 +93,11 @@ class MainPage extends StatelessWidget {
           Container(
             width: mediaWidth * 0.7,
             child:RaisedButton(
+              shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                          elevation: 5,
               textColor: Colors.white,
+              padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
               color: Colors.orangeAccent,
               child: Text('About Food Tracker'),
               onPressed: () {

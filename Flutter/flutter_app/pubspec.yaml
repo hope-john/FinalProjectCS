@@ -66,6 +66,8 @@ flutter:
     - assets/food_bg2.jpg
     - assets/food_bg3.jpg
     - assets/yellow_bg.jpg
+    - assets/Icon.jpg
+    - assets/Icon_Trans.png
   
 
   # An image asset can refer to one or more resolution-specific "variants", see

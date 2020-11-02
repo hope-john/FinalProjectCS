@@ -88,17 +88,29 @@ class MyImagePickerState extends State {
                           fontSize: 32,
                         ))
                     : Image.file(imageURI,
-                        width: 224, height: 224, fit: BoxFit.cover),
+                        width: mediaWidth * 0.7,
+                        height: 224,
+                        fit: BoxFit.cover),
+                Container(
+                  width: mediaWidth * 0.7,
+                  child: Divider(
+                    color: Colors.orangeAccent,
+                    thickness: 1.5,
+                  ),
+                ),
                 SizedBox(
                   height: 15,
                 ),
                 Container(
                     width: mediaWidth * 0.7,
                     child: RaisedButton.icon(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      elevation: 5,
                       color: Colors.orangeAccent,
                       icon: Icon(Icons.add_a_photo),
                       onPressed: () => getImageFromCamera(),
-                      label: Text('Take a Picture From Camera'),
+                      label: Text('Take a Photo '),
                       textColor: Colors.white,
                       padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
                     )),
@@ -108,26 +120,37 @@ class MyImagePickerState extends State {
                 Container(
                     width: mediaWidth * 0.7,
                     child: RaisedButton.icon(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      elevation: 5,
                       color: Colors.orangeAccent,
                       icon: Icon(Icons.add_photo_alternate),
                       onPressed: () => getImageFromGallery(),
-                      label: Text('Select Image From Gallery'),
+                      label: Text('Select an Image '),
                       textColor: Colors.white,
                       padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
                     )),
-                    
                 Container(
                     width: mediaWidth * 0.7,
                     margin: EdgeInsets.only(top: 15, bottom: 20),
                     child: RaisedButton.icon(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      elevation: 5,
                       onPressed: () => classifyImage(context),
                       icon: Icon(Icons.find_in_page),
-                      label: Text('SCAN'),
+                      label: Text('Scan'),
                       textColor: Colors.white,
                       color: Colors.orangeAccent,
-                      
                       padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
                     )),
+                Container(
+                  width: mediaWidth * 0.7,
+                  child: Divider(
+                    color: Colors.orangeAccent,
+                    thickness: 1.5,
+                  ),
+                ),
                 result == null
                     ? Text('Result',
                         style: GoogleFonts.lato(
