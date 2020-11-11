@@ -30,7 +30,7 @@ class HistoryPageState extends State<HistoryPage> {
               showData = [];
               storage.setItem('foods', showData);
             }
-
+            print(showData[0]['cal']);
             return ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
                   return ListTile(
@@ -38,9 +38,22 @@ class HistoryPageState extends State<HistoryPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HistorySecondPage()));
+                                builder: (context) => InsidePage()));
                       },
-                      subtitle: Text(showData[index]['NameFood']),
+                      subtitle: Row(
+                        children: [
+                          Text(
+                            showData[index]['NameFood'].toString(),
+                          ),
+                          SizedBox(
+                            width: 7,
+                          ),
+                          Text(
+                            // showData[index]['cal'].toString(),
+                            '${showData[index]['cal'].toString()}  Cal  Perservring',
+                          ),
+                        ],
+                      ),
                       title: Text(
                         new DateFormat.yMMMd().format(
                             DateTime.parse(showData[index]['timestamp'])),
@@ -55,24 +68,21 @@ class HistoryPageState extends State<HistoryPage> {
   }
 }
 
-class HistorySecondPage extends StatefulWidget {
+class InsidePage extends StatefulWidget {
   @override
-  HistoryPageState createState() => HistoryPageState();
+  InsidePageState createState() => InsidePageState();
 }
 
-class HistorySecondPageState extends State<HistorySecondPage> {
+class InsidePageState extends State<InsidePage> {
   final LocalStorage storage = new LocalStorage('food_history');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/yellow_bg.jpg'),
-                fit: BoxFit.cover,
-              ),
-            )));
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(color: const Color(0x000000)),
+      ),
+    );
   }
 }

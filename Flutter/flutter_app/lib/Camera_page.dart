@@ -47,7 +47,7 @@ class MyImagePickerState extends State {
         new FormData.fromMap({"file": await MultipartFile.fromFile(path)});
     try {
       var response =
-          await Dio().post("http://10.5.12.169:5000/upload", data: formData);
+          await Dio().post("http://172.20.10.3:5000/upload", data: formData);
       dynamic parsedJson = json.decode(response.data.toString());
       setState(() {
         result =
@@ -132,7 +132,7 @@ class MyImagePickerState extends State {
                     )),
                 Container(
                     width: mediaWidth * 0.7,
-                    margin: EdgeInsets.only(top: 15, bottom: 20),
+                    margin: EdgeInsets.only(top: 15, bottom: 15),
                     child: RaisedButton.icon(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15)),
@@ -170,26 +170,29 @@ class MyImagePickerState extends State {
                         ),
                         decoration: BoxDecoration(
                           color: Colors.orangeAccent,
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(8),
                         ),
                       ),
+                      SizedBox(
+                  height: 12,
+                ),
                 score > 66
                     ? Icon(
                         Icons.check_circle_outline,
                         color: Colors.lightGreen[700],
-                        size: 50,
+                        size: 45,
                       )
                     : score > 35
                         ? Icon(
                             Icons.check_circle_outline,
                             color: Colors.yellow[700],
-                            size: 50,
+                            size: 45,
                           )
                         : score > 1
                             ? Icon(
                                 Icons.report,
                                 color: Colors.red,
-                                size: 50,
+                                size: 45,
                               )
                             : Material(),
               ])),
