@@ -37,7 +37,7 @@ class HistoryPageState extends State<HistoryPage> {
                     children: [
                       if (index == 0)
                         Divider(
-                          color: Colors.grey,
+                          color: Colors.orangeAccent,thickness: 0.8
                         ),
                       ListTile(
                         subtitle: Row(
@@ -80,7 +80,7 @@ class HistoryPageState extends State<HistoryPage> {
                         //       ),
                       ),
                       Divider(
-                        color: Colors.grey,
+                        color: Colors.orangeAccent,thickness: 0.8
                       ),
                     ],
                   );
@@ -94,13 +94,14 @@ class HistoryPageState extends State<HistoryPage> {
  
   Widget buildIcon(int hour) {
     if (hour >= 6 && hour <= 12) {
-      return Icon(Icons.flare, color: Colors.orangeAccent ,size: 34);
+      return Icon(Icons.brightness_low, color: Colors.redAccent ,size: 34);
     } else if (hour >= 13 && hour <= 18) {
-      return Icon(Icons.brightness_low, color: Colors.redAccent,size:30);
+      return Icon(Icons.brightness_medium, color: Colors.orangeAccent,size:30);
     } else {
       return Icon(
-        Icons.brightness_2,
+        Icons.brightness_4,
         color: Colors.yellow,
+        size:32
         // color: Colors.yellow[700],
       );
     }
