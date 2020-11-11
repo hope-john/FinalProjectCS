@@ -194,6 +194,7 @@ class MyImagePickerState extends State {
                                 color: Colors.red,
                                 size: 45,
                               )
+                              
                             : Material(),
               ])),
     ));
