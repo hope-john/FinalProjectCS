@@ -91,12 +91,12 @@ class HistoryPageState extends State<HistoryPage> {
       ),
     );
   }
-
+ 
   Widget buildIcon(int hour) {
     if (hour >= 6 && hour <= 12) {
-      return Icon(Icons.brightness_low, color: Colors.orangeAccent);
+      return Icon(Icons.flare, color: Colors.orangeAccent ,size: 34);
     } else if (hour >= 13 && hour <= 18) {
-      return Icon(Icons.flare, color: Colors.red ,size: 34 ,);
+      return Icon(Icons.brightness_low, color: Colors.redAccent,size:30);
     } else {
       return Icon(
         Icons.brightness_2,
