@@ -74,129 +74,135 @@ class MyImagePickerState extends State {
   Widget build(BuildContext context) {
     final mediaWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-        body: Container(
-      child: Container(
-          width: double.infinity,
-          decoration: BoxDecoration(color: const Color(0x000000)),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                imageURI == null
-                    ? Text('No image selected',
-                        style: GoogleFonts.lato(
-                          color: Colors.orangeAccent,
-                          fontSize: 32,
-                        ))
-                    : Image.file(imageURI,
-                        width: mediaWidth * 0.7,
-                        height: 224,
-                        fit: BoxFit.cover),
-                Container(
-                  width: mediaWidth * 0.7,
-                  child: Divider(
-                    color: Colors.orangeAccent,
-                    thickness: 1.5,
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Container(
-                    width: mediaWidth * 0.7,
-                    child: RaisedButton.icon(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      elevation: 5,
-                      color: Colors.orangeAccent,
-                      icon: Icon(Icons.add_a_photo),
-                      onPressed: () => getImageFromCamera(),
-                      label: Text('Take a Photo '),
-                      textColor: Colors.white,
-                      padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
-                    )),
-                SizedBox(
-                  height: 15,
-                ),
-                Container(
-                    width: mediaWidth * 0.7,
-                    child: RaisedButton.icon(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      elevation: 5,
-                      color: Colors.orangeAccent,
-                      icon: Icon(Icons.add_photo_alternate),
-                      onPressed: () => getImageFromGallery(),
-                      label: Text('Select an Image '),
-                      textColor: Colors.white,
-                      padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
-                    )),
-                Container(
-                    width: mediaWidth * 0.7,
-                    margin: EdgeInsets.only(top: 15, bottom: 15),
-                    child: RaisedButton.icon(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      elevation: 5,
-                      onPressed: () => classifyImage(context),
-                      icon: Icon(Icons.find_in_page),
-                      label: Text('Scan'),
-                      textColor: Colors.white,
-                      color: Colors.orangeAccent,
-                      padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
-                    )),
-                Container(
-                  width: mediaWidth * 0.7,
-                  child: Divider(
-                    color: Colors.orangeAccent,
-                    thickness: 1.5,
-                  ),
-                ),
-                result == null
-                    ? Text('Result',
-                        style: GoogleFonts.lato(
-                          color: Colors.orangeAccent,
-                          fontSize: 29,
-                        ))
-                    : Container(
-                        height: 130,
-                        width: 325,
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text(result,
-                              style: GoogleFonts.lato(
-                                  color: Colors.white,
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.orangeAccent,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Color(0x000000),
+          iconTheme: IconThemeData(color: Colors.orangeAccent),
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(color: const Color(0x000000)),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    imageURI == null
+                        ? Text('No image selected!',
+                            style: GoogleFonts.lato(
+                              color: Colors.orangeAccent,
+                              fontSize: 32,
+                            ))
+                        : Image.file(imageURI,
+                            width: mediaWidth * 0.7,
+                            height: 224,
+                            fit: BoxFit.cover),
+                    Container(
+                      width: mediaWidth * 0.7,
+                      child: Divider(
+                        color: Colors.orangeAccent,
+                        thickness: 1.5,
                       ),
-                      SizedBox(
-                  height: 12,
-                ),
-                score > 66
-                    ? Icon(
-                        Icons.check_circle_outline,
-                        color: Colors.lightGreen[700],
-                        size: 45,
-                      )
-                    : score > 35
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Container(
+                        width: mediaWidth * 0.7,
+                        child: RaisedButton.icon(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          elevation: 5,
+                          color: Colors.orangeAccent,
+                          icon: Icon(Icons.add_a_photo),
+                          onPressed: () => getImageFromCamera(),
+                          label: Text('Take a Photo '),
+                          textColor: Colors.white,
+                          padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                        )),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Container(
+                        width: mediaWidth * 0.7,
+                        child: RaisedButton.icon(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          elevation: 5,
+                          color: Colors.orangeAccent,
+                          icon: Icon(Icons.add_photo_alternate),
+                          onPressed: () => getImageFromGallery(),
+                          label: Text('Select an Image '),
+                          textColor: Colors.white,
+                          padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                        )),
+                    Container(
+                        width: mediaWidth * 0.7,
+                        margin: EdgeInsets.only(top: 15, bottom: 15),
+                        child: RaisedButton.icon(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          elevation: 5,
+                          onPressed: imageURI == null
+                              ? null
+                              : () => classifyImage(context),
+                          icon: Icon(Icons.find_in_page),
+                          label: Text('Scan'),
+                          textColor: Colors.white,
+                          color: Colors.orangeAccent,
+                          padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                        )),
+                    Container(
+                      width: mediaWidth * 0.7,
+                      child: Divider(
+                        color: Colors.orangeAccent,
+                        thickness: 1.5,
+                      ),
+                    ),
+                    result == null
+                        ? Text('Result',
+                            style: GoogleFonts.lato(
+                              color: Colors.orangeAccent,
+                              fontSize: 29,
+                            ))
+                        : Container(
+                            height: 130,
+                            width: 325,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Text(result,
+                                  style: GoogleFonts.lato(
+                                      color: Colors.white,
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.orangeAccent,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    score > 66
                         ? Icon(
                             Icons.check_circle_outline,
-                            color: Colors.yellow[700],
+                            color: Colors.lightGreen[700],
                             size: 45,
                           )
-                        : score > 1
+                        : score > 35
                             ? Icon(
-                                Icons.report,
-                                color: Colors.red,
+                                Icons.check_circle_outline,
+                                color: Colors.yellow[700],
                                 size: 45,
                               )
-                              
-                            : Material(),
-              ])),
-    ));
+                            : score > 1
+                                ? Icon(
+                                    Icons.report,
+                                    color: Colors.red,
+                                    size: 45,
+                                  )
+                                : Material(),
+                  ])),
+        ));
   }
 }
