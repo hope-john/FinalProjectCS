@@ -4,15 +4,15 @@ import 'package:google_fonts/google_fonts.dart';
 class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.white),
           title: Text('About'),
           backgroundColor: Colors.orangeAccent,
         ),
         body: HomeContent(
           
-        ),
+      
       ),
     );
   }

@@ -28,7 +28,7 @@ class MainPage extends StatelessWidget {
                   gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
-                      colors: [Colors.orangeAccent, Colors.orangeAccent[700]])),
+                      colors: [Colors.orangeAccent, Colors.orange[700]])),
             )),
         body: Container(
           width: double.infinity,

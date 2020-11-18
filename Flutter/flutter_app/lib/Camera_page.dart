@@ -185,19 +185,19 @@ class MyImagePickerState extends State {
                     ),
                     score > 66
                         ? Icon(
-                            Icons.check_circle_outline,
+                            Icons.check_box_rounded ,
                             color: Colors.lightGreen[700],
                             size: 45,
                           )
                         : score > 35
                             ? Icon(
-                                Icons.check_circle_outline,
+                                Icons.check_box_rounded ,
                                 color: Colors.yellow[700],
                                 size: 45,
                               )
                             : score > 1
                                 ? Icon(
-                                    Icons.report,
+                                    Icons.error_outline_sharp ,
                                     color: Colors.red,
                                     size: 45,
                                   )

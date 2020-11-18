@@ -21,6 +21,7 @@ class HistoryPageState extends State<HistoryPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("History Page"),
+        elevation: 0,
         backgroundColor: Colors.orangeAccent,
       ),
       body: Center(
@@ -106,11 +107,11 @@ class HistoryPageState extends State<HistoryPage> {
 
   Widget buildIcon(int hour) {
     if (hour >= 6 && hour <= 12) {
-      return Icon(Icons.wb_twighlight, color: Colors.redAccent, size: 30);
+      return Icon(Icons.wb_twighlight, color: Colors.redAccent, size: 25);
     } else if (hour >= 13 && hour <= 18) {
-      return Icon(Icons.wb_sunny, color: Colors.orangeAccent, size: 30);
+      return Icon(Icons.wb_sunny, color: Colors.orangeAccent, size: 25);
     } else {
-      return Icon(Icons.bedtime, color: Colors.yellow[600], size: 30
+      return Icon(Icons.bedtime, color: Colors.yellow[600], size: 25
           // color: Colors.yellow[700],
           );
     }
@@ -120,7 +121,7 @@ class HistoryPageState extends State<HistoryPage> {
     if (cal < 450) {
       return Icon(Icons.restaurant, color: Colors.green, size: 25);
     } else {
-      return Icon(Icons.restaurant, color: Colors.redAccent, size: 25);
+      return Icon(Icons.restaurant, color: Colors.red, size: 25);
     }
   }
 }
