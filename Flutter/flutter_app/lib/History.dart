@@ -24,7 +24,7 @@ class HistoryPageState extends State<HistoryPage> {
         elevation: 0,
         backgroundColor: Colors.orangeAccent,
       ),
-      body: Center(
+    body: Center(
         child: FutureBuilder(
           builder: (BuildContext context, snapshot) {
             List showData = storage.getItem('foods');
@@ -58,7 +58,7 @@ class HistoryPageState extends State<HistoryPage> {
                                 ),
                                 Text(
                                   // showData[index]['cal'].toString(),
-                                  '${showData[index]['cal'].toString()} Cal Per-severing',
+                                  '${showData[index]['cal'].toString()} Cal per/serve',
                                 ),
                                 SizedBox(
                                   width: 7,
