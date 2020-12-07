@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'Camera_page.dart';
 import 'History.dart';
 import 'About.dart';
+import 'History_Detail_screen.dart';
 
 void main() => runApp(App());
 
@@ -9,9 +10,15 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Navigation',
-      home: MainPage(),
-    );
+        title: 'Flutter Navigation',
+        home: MainPage(),
+        initialRoute: '/',
+        routes: {
+          HistoryPage.routeName: (_) => HistoryPage(),
+          HistoryDetailScreen.routeName: (_) => HistoryDetailScreen(),
+          MyImagePicker.routeName: (_) => MyImagePicker(),
+          AboutPage.routeName: (_) => AboutPage(),
+        });
   }
 }
 
@@ -64,10 +71,7 @@ class MainPage extends StatelessWidget {
                   color: Colors.orangeAccent,
                   child: Text('Go to pick image'),
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MyImagePicker()));
+                    Navigator.of(context).pushNamed(MyImagePicker.routeName);
                   },
                 ),
               ),
@@ -85,8 +89,7 @@ class MainPage extends StatelessWidget {
                   color: Colors.orangeAccent,
                   child: Text('History Page'),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HistoryPage()));
+                    Navigator.of(context).pushNamed(HistoryPage.routeName);
                   },
                 ),
               ),
@@ -104,8 +107,7 @@ class MainPage extends StatelessWidget {
                     color: Colors.orangeAccent,
                     child: Text('About Food Tracker'),
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => AboutPage()));
+                      Navigator.of(context).pushNamed(AboutPage.routeName);
                     },
                   ))
             ],

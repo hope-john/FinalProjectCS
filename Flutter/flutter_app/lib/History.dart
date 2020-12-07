@@ -10,6 +10,7 @@ import 'dart:async';
 import 'package:infinite_listview/infinite_listview.dart';
 
 class HistoryPage extends StatefulWidget {
+  static const routeName = "/history";
   @override
   HistoryPageState createState() => HistoryPageState();
 }
@@ -24,7 +25,7 @@ class HistoryPageState extends State<HistoryPage> {
         elevation: 0,
         backgroundColor: Colors.orangeAccent,
       ),
-    body: Center(
+      body: Center(
         child: FutureBuilder(
           builder: (BuildContext context, snapshot) {
             List showData = storage.getItem('foods');
@@ -39,10 +40,9 @@ class HistoryPageState extends State<HistoryPage> {
               return ListView.builder(
                   itemBuilder: (BuildContext context, int index) {
                     return InkWell(
-                      onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HistoryDetailScreen())),
+                      onTap: () => Navigator.of(context).pushNamed(
+                          HistoryDetailScreen.routeName,
+                          arguments: showData[index]['cal'.toString()]),
                       child: Column(
                         children: [
                           if (index == 0)

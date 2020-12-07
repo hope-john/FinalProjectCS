@@ -2,18 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AboutPage extends StatelessWidget {
+  static const routeName = "/about";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.white),
-          title: Text('About'),
-          backgroundColor: Colors.orangeAccent,
-        ),
-        body: HomeContent(
-          
-      
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        title: Text('About'),
+        backgroundColor: Colors.orangeAccent,
       ),
+      body: HomeContent(),
     );
   }
 }
@@ -60,11 +58,14 @@ class HomeContent extends StatelessWidget {
     Widget ReferSection = Container(
       padding: const EdgeInsets.all(24.0),
       child: Text(
-        'Our References \n https://www.calforlife.com \n https://www.lovefitt.com \n https://www.nutritionix.com \n https://www.fatnever.com/calories \n https://www.wongnai.com',style:GoogleFonts.lato(fontSize: 18, color: Colors.orangeAccent,fontWeight: FontWeight.bold),
-        
+        'Our References \n https://www.calforlife.com \n https://www.lovefitt.com \n https://www.nutritionix.com \n https://www.fatnever.com/calories \n https://www.wongnai.com',
+        style: GoogleFonts.lato(
+            fontSize: 18,
+            color: Colors.orangeAccent,
+            fontWeight: FontWeight.bold),
       ),
     );
-    
+
     return ListView(
       children: <Widget>[
         Image(
@@ -77,7 +78,6 @@ class HomeContent extends StatelessWidget {
         textSection,
         ReferSection,
       ],
-      
     );
   }
-  }
+}

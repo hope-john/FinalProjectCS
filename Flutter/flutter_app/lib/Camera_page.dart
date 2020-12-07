@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
 
 class MyImagePicker extends StatefulWidget {
+  static const routeName = "/camera-page";
   @override
   MyImagePickerState createState() => MyImagePickerState();
 }
@@ -185,19 +186,19 @@ class MyImagePickerState extends State {
                     ),
                     score > 66
                         ? Icon(
-                            Icons.check_box_rounded ,
+                            Icons.check_box_rounded,
                             color: Colors.lightGreen[700],
                             size: 45,
                           )
                         : score > 35
                             ? Icon(
-                                Icons.check_box_rounded ,
+                                Icons.check_box_rounded,
                                 color: Colors.yellow[700],
                                 size: 45,
                               )
                             : score > 1
                                 ? Icon(
-                                    Icons.error_outline_sharp ,
+                                    Icons.error_outline_sharp,
                                     color: Colors.red,
                                     size: 45,
                                   )
