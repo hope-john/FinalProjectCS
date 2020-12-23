@@ -50,24 +50,30 @@ class HistoryPageState extends State<HistoryPage> {
                           ListTile(
                             subtitle: Row(
                               children: [
+                                
+                                  
                                 Text(
                                   showData[index]['NameFood'].toString(),
                                 ),
                                 SizedBox(
                                   width: 7,
                                 ),
-                                Text(
+                                Flexible(
+                                child:Text(
                                   // showData[index]['cal'].toString(),
-                                  '${showData[index]['cal'].toString()} Cal per/serve',
-                                ),
+                                  '${showData[index]['cal'].toString()} Calories Per serve',
+                                ),),
                                 SizedBox(
-                                  width: 7,
+                                  width: 2,
                                 ),
                                 Text(
                                   DateFormat.Hm().format(DateTime.parse(
                                       showData[index]['timestamp'])),
                                 ),
+                                  
+                                
                               ],
+                              
                             ),
                             title: Text(
                               new DateFormat.yMMMd().format(
